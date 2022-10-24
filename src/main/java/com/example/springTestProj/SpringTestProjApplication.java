@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringTestProjApplication {
 
 	public static void main(String[] args) {
-		Application.launch(JavafxApplication.class, args);
+		Application.launch(SquizardApplication.class, args);
 	}
 
 }

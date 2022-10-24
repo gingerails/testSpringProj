@@ -42,6 +42,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User returnUser(String username, String password){
+        return userRepository.findUsersByUsernameAndPassword(username, password);
+    }
+
     @Transactional
     public String deleteUser(User user){
         if (userRepository.existsByUserID(user.getUserID())){
