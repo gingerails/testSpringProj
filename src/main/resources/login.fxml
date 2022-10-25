@@ -20,6 +20,7 @@
    <TextField fx:id="UsrField" accessibleText="UsrField" prefHeight="15.0" prefWidth="238.0" />
    <Label text="Password:" />
    <TextField fx:id="PassField" accessibleText="PassField" />
-      <Button fx:id="button" graphicTextGap="0.0" onAction="#verify" text="Login" translateY="5.0" />
+      <Button fx:id="button" graphicTextGap="0.0" text="Login" translateY="5.0" />
+<!--&lt;!&ndash;&ndash;&gt; onAction="#verify" -->
    <Label fx:id="confirm" accessibleText="confirm" prefHeight="18.0" prefWidth="314.0" translateY="10.0" />
 </VBox>

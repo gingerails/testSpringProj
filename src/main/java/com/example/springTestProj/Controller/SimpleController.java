@@ -1,6 +1,7 @@
 package com.example.springTestProj.Controller;
 
 import com.example.springTestProj.Service.UserService;
+//import com.example.springTestProj.StageInitializer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class SimpleController {
     @Autowired
     UserService userService;
+
 
     @FXML
     public Label label;
