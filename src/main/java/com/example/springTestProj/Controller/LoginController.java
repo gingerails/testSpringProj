@@ -14,18 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import net.rgielen.fxweaver.core.FxmlView;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 
 @Component
 @FxmlView("/login.fxml")
@@ -58,11 +52,6 @@ public class LoginController{
         this.button.setOnAction(actionEvent -> {
             System.out.print("Got heere");
             verify();
-            try {
-                changeScene("/ui.fxml");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         });
     }
 
@@ -79,7 +68,6 @@ public class LoginController{
         currentStage.setScene(newScene);
 
         System.out.println("h");
-
     }
 
     /**
@@ -92,7 +80,11 @@ public class LoginController{
         if(userService.returnUser(Username, Password) != null) //needs to talk to database and veify the username and passwords
         {
             System.out.println("Found User!");
-
+            try {
+                changeScene("/ui.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         else{
             System.out.println("Error: UserName/Password is incorrect! Try Again!");
