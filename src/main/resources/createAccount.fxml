@@ -11,12 +11,13 @@
 
 <!--  ADD LATER      stylesheets="@Style.css"-->
 
-<VBox cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="276.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.springTestProj.Controller.LoginController">
+<VBox cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="276.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.springTestProj.Controller.CreateAccountController">
+   <Separator orientation="VERTICAL" prefHeight="200.0" />
    <VBox>
       <children>
-         <Label alignment="TOP_CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="86.0" prefWidth="622.0" snapToPixel="false" text="Login" textAlignment="CENTER">
+         <Label alignment="TOP_CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="86.0" prefWidth="622.0" snapToPixel="false" text="Create Account" textAlignment="CENTER">
             <font>
-               <Font name="System Bold" size="59.0" />
+               <Font name="System Bold" size="23.0" />
             </font>
          </Label>
          <Label text="Username:" />
@@ -27,9 +28,9 @@
    <TextField fx:id="PassField" accessibleText="PassField" />
    <HBox prefHeight="28.0" prefWidth="276.0">
       <children>
-            <Button fx:id="button" graphicTextGap="0.0" prefHeight="25.0" prefWidth="122.0" text="Login" />
+            <Button fx:id="button" graphicTextGap="0.0" prefHeight="25.0" prefWidth="183.0" text="Create" />
          <Separator prefWidth="200.0" />
-         <Hyperlink fx:id="createAccountLink" prefHeight="23.0" prefWidth="165.0" text="Create Account" />
+         <Hyperlink fx:id="existingAccountLink" prefHeight="23.0" prefWidth="274.0" text="Login to Existing Account" />
       </children>
    </HBox>
 <!--&lt;!&ndash;&ndash;&gt; onAction="#verify" -->

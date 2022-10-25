@@ -1,14 +1,9 @@
 package com.example.springTestProj.Controller;
 
+import com.example.springTestProj.Entities.User;
 import com.example.springTestProj.Service.UserService;
-import com.example.springTestProj.SquizardApplication;
-//import com.example.springTestProj.StageInitializer;
-import javafx.application.HostServices;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,18 +11,20 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
-@FxmlView("/login.fxml")
-public class LoginController{
+@ComponentScan
+@FxmlView("/createAccount.fxml")
+public class CreateAccountController {
 
     @Autowired
-    UserService userService;
+    public UserService userService;
 
     @FXML
     public Label label;
@@ -45,32 +42,29 @@ public class LoginController{
     public Label confirm;
 
     @FXML
-    public Hyperlink createAccountLink;
+    public Hyperlink existingAccountLink;
 
-    /**
-     * initialize
-     * automatically called
-     */
     @FXML
     public void initialize () {
-        this.createAccountLink.setOnAction(actionEvent -> {
+        this.existingAccountLink.setOnAction(actionEvent -> {
             System.out.print("Link clicked");
             try {
-                changeScene("/createAccount.fxml");
+                changeScene("/login.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             //    verify();
         });
         this.button.setOnAction(actionEvent -> {
-            System.out.print("Got heere");
-            verify();
+            System.out.println("CReating User");
+            createUser();
+         //   verify();
         });
     }
 
 
     /**
-     * Changes the scene
+     * Changes the scene. This is being reused a lot. Lets put this in its own class or something.
      * @param fxml
      * @throws IOException
      */
@@ -84,16 +78,18 @@ public class LoginController{
         System.out.println("h");
     }
 
-    /**
-     * Verify user account exists
-     */
-    public void verify() {
+    public void createUser(){
+
         System.out.println("Verifying User...");
-        String Username=UsrField.getText();
-        String Password=PassField.getText();
-        if(userService.returnUser(Username, Password) != null) //needs to talk to database and veify the username and passwords
+
+        String username = UsrField.getText();
+        String password = PassField.getText();
+        System.out.println(userService.returnUserByUsername(username));
+        if(userService.returnUserByUsername(username) == null) // there mustn't be any users w that username on this device
         {
-            System.out.println("Found User!");
+            // SAVE NEW USER TO REPOSITORY
+            User newUser = userService.createUser(username, password);
+            userService.saveUserToRepository(newUser);
             try {
                 changeScene("/ui.fxml");
             } catch (IOException e) {
@@ -101,10 +97,7 @@ public class LoginController{
             }
         }
         else{
-            System.out.println("Error: UserName/Password is incorrect! Try Again!");
+            System.out.println("Error: Username taken");
         }
-
     }
-
-
 }
